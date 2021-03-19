@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% import 'macros/form.html' as f %}
+
+{% block drawer %} {% include 'apps/customers/contacts/components/drawers.html' %} {% endblock drawer %}
+
+{% block navmate %} {% include 'apps/customers/contacts/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+    {% if contacts.__len__() > 0 %}
+        <div class="m-2">
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-right">
+                        <button type="button" drawer-target="newCustomer" id="create_customer_btn" tabindex="102" 
+                                class="sw-btn drawer-button f-12 sharp-txt">
+                            + Create Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-4">
+
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="sw-table-area">
+                        <div class="sw-table-features">
+                            <div class="sw-table-filter"></div>
+                            <div class="sw-table-search"></div>
+                            <div class="sw-dropdown f-14">
+                                <div tabindex="23" class="sw-droplabel sw-table-dots"></div>
+                                <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                    <div class="sw-item">Inactive Selected</div>
+                                    <div class="sw-item">Adjust Columns</div>                                    
+                                    <div class="sw-item border-top">Include Inactive</div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="sw-table pager_details sw-table-rower w-100 sw-table-infom">
+                            <thead>
+                                <tr>
+                                    <th class="text-right">#</th>
+                                    <th class="text-left">Contact Name</th>
+                                    <th class="text-left">Phone</th>
+                                    <th class="text-left">Email</th>
+                                    <th class="text-left">Website</th>
+                                    <th class="text-left">Reach by </th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contact in contacts %}
+                                    <tr class="p-0" style="line-height: 1.2em;">
+                                        <td class="text-right">{{ contact.id }}</td>
+                                        <td class="text-left">{{ contact.name }}</td>
+                                        <td>{{ contact.phone }}</td>
+                                        <td>{{ contact.email }}</td>
+                                        <td>{{ contact.website }}</td>
+                                        <td>
+                                            <a href="#">{{ contact.in_reach.display_name }}</a>
+                                        </td>
+                                        <td class="text-center">More...</td>
+                                    </tr>
+                                {% endfor %}                                
+                            </tbody>                    
+                        </table>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    {% else %}
+        <div class="container h-100" style="display: flex;align-items: center;justify-content: center;">
+            <h2 class="f-34 text-center money">
+                Create Your very First Contact to be in touch with customers.<br>
+                <span drawer-target="newCustomer" tabindex="102" class="sw-btn drawer-button d-inline-block f-16 sharp-txt px-4 mt-2">
+                    Create Contact
+                </span>
+            </h2>
+        </div>
+    {% endif %}
+{% endblock main %}
+
+{% block JS %}
+<script>
+    var g = '{{ c_form.errors }}'	
+	if (g != '{}' ){
+		var f = document.getElementById('create_customer_btn');
+		f.click()
+	}    
+</script>
+{% endblock JS %}

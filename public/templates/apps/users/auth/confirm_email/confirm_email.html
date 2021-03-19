@@ -1,0 +1,21 @@
+{% extends "apps/main/before_signup/home.html" %} 
+{% block main %}
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-12">
+            <form class="sw-form" method="POST" autocomplete="off" action="{{ url_for('users.confirm_email',token=request.url.split('/')[-1]) }}">
+                {{ form.hidden_tag() }}
+                <h1 class="f-28">
+                    Confirmation Email Has Been Sent to {{ data['user_email']}}
+                </h1>
+                <p class="f-16">
+                    Please check your email and click on the link to active your account and get start you accounting on Agust accounting Online Software. <br> After completing this activation process you will be able to consume services from Agust Accounting
+                    Online Software.
+                </p>
+                <span class="f-14">In case if you do not recive any email from us than click on 
+                        {{ form.send(class="sw-btn f-12 sharp-txt sw-btn-text", value="send again!") }}</span>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}

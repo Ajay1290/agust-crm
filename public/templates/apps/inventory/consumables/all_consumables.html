@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% block drawer %} {% include 'apps/inventory/consumables/components/drawers.html' %} {% endblock drawer %}
+
+{% block navmate %} {% include 'apps/inventory/consumables/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+    {% if consumables.__len__() >0 %}
+        <div class="m-2">
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-right">
+                        <span drawer-target="newInventory" id="create_inv_btn" tabindex="102" class="sw-btn drawer-button f-12 sharp-txt">
+                            + Add Consumables
+                        </span>
+                        <span tabindex="102" class="sw-btn mx-2 f-12 sharp-txt">
+                            Purchase Consumables
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="sw-table-area">
+                        <div class="sw-table-features">
+                            <div class="sw-table-filter"></div>
+                            <div class="sw-table-search"></div>
+                            <div class="sw-dropdown f-12">
+                                <div tabindex="23" class="sw-droplabel sw-table-dots"></div>
+                                <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                    <div class="sw-item">Inactive Selected</div>
+                                    <div class="sw-item">Adjust Columns</div>                                    
+                                    <div class="sw-item border-top">Include Inactive</div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="sw-table pager_details sw-table-rower w-100 sw-table-infom">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Product Name</th>
+                                    <th class="text-left">Model</th>
+                                    <th class="text-left">Product Code</th>
+                                    <th class="text-left">Qty</th>
+                                    <th class="text-left">Category</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consumable in consumables %}
+                                    <tr class="p-0" style="line-height: 1.2em;">
+                                        <td class="text-left">
+                                            <a href="{{ url_for('inventory.consumable_info', c_id=consumable.id) }}">
+                                                {{ consumable.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ consumable.model }}</td>
+                                        <td>{{ consumable.product_code }}</td>
+                                        <td>{{ consumable.qty }} {{ consumable.unit }}</td>
+                                        <td>{{ consumable.category }}</td>
+                                        <td class="text-right">---</td>
+                                    </tr>
+                                {% endfor %}                                
+                            </tbody>                    
+                        </table>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    {% else %}
+    <div class="container h-100" style="display: flex;align-items: center;justify-content: center;">        
+        <h2 class="f-34 text-center money w-75">
+            Manage Your Consumables And Keep Them Stock Up.<br>
+            <span drawer-target="newInventory" id="create_inv_btn" tabindex="102" class="sw-btn drawer-button d-inline-block f-16 mt-2 px-3 sharp-txt">
+                <span class="sw-btn-ripple"></span>
+                Get Started
+            </span>
+        </h2>      
+    </div>
+    {% endif %}
+{% endblock main %}

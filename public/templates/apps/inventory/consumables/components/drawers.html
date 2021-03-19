@@ -1,0 +1,73 @@
+{% import 'macros/form.html' as _form %}
+
+<div id="newInventory" class="drawer w-50">
+    <div class="container-fluid px-4 py-3">
+        <!-- Create Consumable -->
+        <div id="createConsumable" class="row text-center px-3" style="position: relative;">
+            <h1 class="f-28 money b-3">
+                Create New Consumable
+                <sapn tabindex="1" class="sw-i-btn f-10" sw-title="Create a new product which you want sell or manage stock of it.">i</sapn>
+            </h1>
+
+            <form action="{{ url_for('inventory.consumable_create') }}" method="POST" class="sw-form f-14 px-2">
+                {{ form.hidden_tag() }}
+                <!-- Consumable Name -->
+                <div class="row my-3">
+                    <div class="col-6">
+                        {{ _form.sw_input(form.name, "Consumable Name") }}
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="row my-3">
+                    <div class="col-8">
+                        {{ _form.sw_input(form.description, "Description") }}
+                    </div>
+                </div>
+                <!-- Model, Serial -->
+                <div class="row my-3">
+                    <!-- Model -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.model, "Model") }}
+                    </div>
+                    <!-- Consumable Code -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.product_code, "Product Code") }}
+                    </div>
+                    <!-- Category -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.category, "Category") }}
+                    </div>
+                </div>
+                <!-- Consumable Code, Category -->
+                <div class="row my-3">
+                    <!-- Units -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.unit, "Units") }}
+                    </div>
+                    <!-- Qty. -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.qty, "Qty.", type="number", min="0") }}
+                    </div>
+                    <!-- Low Stock Alert -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.low_stock_alert, "Low Stock Alert", type="number", min="1") }}
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-12">
+                        <div class="py-3 d-flex">
+                            <button tabindex="11" type="submit" class="sw-btn px-4 mx-1">
+                                Save
+                            </button>
+                            <span tabindex="10" class="sw-btn sw-btn-outline drawer-cancle-button px-3 mx-2">
+                                Cancle
+                            </span>
+                        </div>                        
+                    </div>
+                </div>
+
+            </form>                
+        </div>
+    </div>        
+</div>

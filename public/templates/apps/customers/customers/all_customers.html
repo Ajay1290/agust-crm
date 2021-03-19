@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% import 'macros/form.html' as f %}
+
+{% block drawer %} {% include 'apps/customers/customers/components/drawers.html' %} {% endblock drawer %}
+
+{% block navmate %} {% include 'apps/customers/customers/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+    {% if customers.count() > 0 %}
+        <div class="m-2">
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="row mt-2 mx-2">
+                        <div class="sw-card pt-1 pb-2  text-center " style="width: 150px;">
+                            <h1 class="f-32 money mb-0">0</h1>
+                            <h1 class="f-20 mb-0">Active</h1>
+                        </div>
+                        <div class="sw-card mx-3 pt-1 pb-2  text-center " style="width: 150px;">
+                            <h1 class="f-32 money mb-0">0</h1>
+                            <h1 class="f-20 mb-0">On Hold</h1>
+                        </div>
+                        <div class="sw-card pt-1 pb-2  text-center " style="width: 150px;">
+                            <h1 class="f-32 money mb-0">0</h1>
+                            <h1 class="f-20 mb-0">Under Due</h1>
+                        </div>
+                        <div class="sw-card mx-3 pt-1 pb-2  text-center " style="width: 150px;">
+                            <h1 class="f-32 money mb-0">0</h1>
+                            <h1 class="f-20 mb-0">Dead</h1>
+                        </div>
+                    </div>
+                    <div class="float-right pos-absolute right top mr-20px">
+                        <button type="button" drawer-target="newCustomer" id="create_customer_btn" tabindex="102" 
+                                class="sw-btn drawer-button f-12 sharp-txt">
+                            + Create Customer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="sw-table-area">
+                        <div class="sw-table-features">
+                            <div class="sw-table-filter"></div>
+                            <div class="sw-table-search"></div>
+                            <div class="sw-dropdown f-14">
+                                <div tabindex="23" class="sw-droplabel sw-table-dots"></div>
+                                <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                    <div class="sw-item">Inactive Selected</div>
+                                    <div class="sw-item">Adjust Columns</div>                                    
+                                    <div class="sw-item border-top">Include Inactive</div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="sw-table pager_details sw-table-rower w-100 sw-table-infom">
+                            <thead>
+                                <tr>
+                                    <th class="text-right">#</th>
+                                    <th class="text-left">Customer Name</th>
+                                    <th class="text-left">Phone</th>
+                                    <th class="text-left">Email</th>
+                                    <th class="text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for customer in customers %}
+                                    <tr class="p-0" style="line-height: 1.2em;">
+                                        <td class="text-right">{{ customer.id }}</td>
+                                        <td class="text-left">
+                                            <a href="{{ url_for('customers.customer_info', customer_id=customer.id) }}">
+                                                {{ customer.display_name }}
+                                            </a>
+                                            <br>
+                                            <span class="f-10 mt-0 pt-0">{{ customer.company }}</span>
+                                        </td>
+                                        <td>{{ customer.phone }}</td>
+                                        <td>{{ customer.email }}</td>
+                                        <td>more..</td>
+                                    </tr>
+                                {% endfor %}                                
+                            </tbody>                    
+                        </table>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    {% else %}
+        <div class="container h-100" style="display: flex;align-items: center;justify-content: center;">
+            <h2 class="f-34 text-center money">
+                Create Your very First Customer to track Sales from them.<br>
+                <span drawer-target="newCustomer" tabindex="102" class="sw-btn drawer-button d-inline-block f-16 sharp-txt px-4 mt-2">
+                    Create Customer
+                </span>
+            </h2>
+        </div>
+    {% endif %}
+{% endblock main %}
+
+{% block JS %}
+<script>
+    var g = '{{ c_form.errors }}'	
+	if (g != '{}' ){
+		var f = document.getElementById('create_customer_btn');
+		f.click()
+	}    
+</script>
+{% endblock JS %}

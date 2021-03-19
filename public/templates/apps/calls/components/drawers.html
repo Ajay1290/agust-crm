@@ -1,0 +1,70 @@
+{% import 'macros/form.html' as _form %}
+
+<div id="newCustomer" class="drawer w-50 bordered rounded">
+    <div class="container-fluid px-4 py-3">
+        <h1 class="f-28 money b-3">
+            Create New Complaint
+            <sapn  tabindex="1" class="sw-i-btn b-1 f-12" 
+                sw-title="Create a new complaint by filling form and remember (*) notaion shows neccisity to fill field.">
+                i
+            </sapn>
+        </h1>
+        <form action="{{ url_for('calls.create_complaint') }}" method="POST" class="sw-form f-14">
+            {{ form.hidden_tag() }}
+            <div class="row my-3">
+                <div class="col-7">
+                    <div class="sw-form-input-wrapper">
+                        <select class="sw-form-input f-16" name="call_from" id="call_from">
+                            <option selected value="-1">Select a Customer</option>
+                            {% for customer in customers %}
+                                <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+                            {% endfor %}
+                        </select>
+                        <label class="sw-form-input-label" for="call_from">Call From</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-4">
+                    {{ _form.sw_input(form.contact_name, "Caller Name") }}
+                </div>
+                <div class="col-4">
+                    {{ _form.sw_input(form.contact_phone, "Phone") }}
+                </div>
+                <div class="col-4">
+                    {{ _form.sw_input(form.source, "Source") }}
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-4">
+                    <div class="sw-form-input-wrapper">
+                        <select class="sw-form-input f-16" name="call_from" id="call_from">
+                            <option selected value="-1">Select a Machine</option>
+                            {% for machine in machines %}
+                                <option value="{{ machine.id }}">{{ machine[1] }}</option>
+                            {% endfor %}
+                        </select>
+                        <label class="sw-form-input-label" for="call_from">Select a Machine</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="py-3 d-flex">
+                        <button type="submit" class="sw-btn px-4 mx-1">
+                            Save
+                        </button>
+                        <button type="button" class="sw-btn sw-btn-outline drawer-cancle-button px-3 mx-2">
+                            Cancle
+                        </button >
+                    </div>                        
+                </div>
+            </div>
+    
+        </form>
+    </div>        
+</div>

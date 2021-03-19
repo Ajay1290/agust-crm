@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block meta %}
+        {% endblock meta %}
+
+        {% if title %}
+            <title>Agust - {% block title %}{% endblock %}</title>
+        {% else %}
+            <title>Agust CRM</title>
+        {% endif %}
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='dist/CSS/power.min.css') }}">    
+        {% block head %}
+        {% endblock head %}
+        <style>                
+        </style>
+    </head>
+
+    <body>
+        {% import 'components/sidebar.html' as sidebar %}
+        {% import 'components/profile_sidebar.html' as profile_sidebar %}
+
+        <div style="position: absolute;width: 100%;height: 100%;margin: 0;padding: 0;">
+            <div class="drawer drawer-left" id="profileSidebar">
+                {{ profile_sidebar }}
+            </div>
+            {% block drawer %}
+            {% endblock drawer %}
+
+
+            <section style="width: 100vw;height: 100vh;" >
+                {{ sidebar }}
+                
+                <!-- Main Content -->
+                <main style="padding: 10px; width: calc(100vw - 200px);color: #000;position: relative;left: 200px;margin: 0;padding: 0; height: 100vh;">
+                    <!-- Navbar  -->
+                    <nav style="position: relative;width: 100%;z-index: 3;">
+                        <div>
+                            <!-- Top NavigationBar -->
+                            <nav  class="navbar navbar-info border-bottom sw-shadow-10px w-100" style="padding:0 !important;">
+                                <div class="row w-100 m-0">
+                                    <div class="col-12 p-0">
+                                        <h6 class="ml-3 f-18 mt-2 pb-0 m-0 d-inline-block">
+                                            <select class="p-0 m-0 f-16" name="a" id="a" style="border:none;">
+                                                <option value="1">Creative Business Systems</option>
+                                                <option value="1">Creative Business Firms</option>
+                                                <option value="1">Creative Business Works</option>
+                                            </select>
+                                        </h6>
+
+                                        <!-- Top Nav Links -->
+                                        <ul class="navbar-nav float-right pr-3 ">        
+                                            
+                                            <!-- All List Link -->
+                                            <li class="nav-item">
+                                                <a class="nav-link">
+                                                    <img src="{{ url_for('static', filename='src/SVG/list.svg') }}" alt="List Icon" style="height: 20px; width: 20px;">
+                                                </a>
+                                            </li>
+                                
+                                            <!-- Settings Link -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ url_for('users.settings') }}">
+                                                    <img src="{{ url_for('static', filename='src/SVG/gear.svg') }}" alt="Gear Icon" style="height: 20px; width: 20px;">
+                                                </a>
+                                            </li>
+                                                
+                                            <!-- Logout Link -->
+                                            <li class="nav-item">
+                                                <a class="nav-link drawer-button" drawer-target="profileSidebar">
+
+                                                    <img src="{{ url_for('static', filename='src/SVG/profile.svg') }}" alt="Profile Icon" style="height: 20px; width: 20px;">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div id="navmate">
+                                            {% block navmate %}        
+                                            {% endblock navmate %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+
+                        </div>
+                    </nav>
+
+                    <section id="mainContentSection" style="position: relative; padding: 10px; 
+                                                            overflow: auto;bottom: 0;height: calc(100vh - 40px);">
+                            {% block main %}
+                            {% endblock main %}
+                    </section>
+                </main>
+
+            </section>
+        </div>
+        <script src="{{ url_for('static', filename='dist/JS/power.js') }}"></script>
+        {% block JS %}
+        {% endblock JS %}
+        <script>
+            let navmates = document.getElementById('navmate');
+            let mainContentSection = document.getElementById('mainContentSection');
+            if (navmates.childElementCount > 0){
+                mainContentSection.style.height = 'calc(100vh - 85px)';
+            }else{
+                // mainContentSection.style.top = '40px';
+                mainContentSection.style.height = 'calc(100vh - 40px)';
+            }
+        </script>
+    </body>
+</html>

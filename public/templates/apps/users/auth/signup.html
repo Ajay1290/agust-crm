@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agust CRM Sign Up - Sign Up to Agust CRM Software</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/CSS/main_pg.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/CSS/power.min.css') }}">
+    <style>
+        * {
+            user-select: none;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            /* background-color: whitesmoke !important; */
+            background-color: #ECEEF1 !important;
+        }
+        
+        h1 {
+            font-family: Roboto, Helvetica, Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        
+        a {
+            color: rgba(18, 13, 47, 1) !important;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: rgba(18, 13, 47, 1) !important;
+            text-decoration: none;
+        }
+        
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: rgba(18, 13, 47, 1) !important;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(18, 13, 47, 0.25) !important;
+        }
+        
+        .login_wrapper {
+            min-height: 100vh;
+        }
+        
+        .login_white_wrapper {
+            margin: 35px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login_inner_white_wrapper {
+            background-color: #fff;
+            width: 500px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 25px 15px;
+            text-align: center;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 3px #dadce0;
+        }
+        
+        .sw-hr {
+            padding: 0 25px;
+            border-top: 1px solid #e2e1e1;
+        }
+        
+        .sw-icon-form {
+            display: flex;
+            align-items: center;
+        }
+        
+        .sw-form-control {
+            width: 100%;
+            border: none;
+        }
+        .lowercase{ text-transform: lowercase; }
+    </style>
+</head>
+
+<body>
+    {% import 'macros/form.html' as f with context %}
+
+    <div class="login_wrapper">
+        <div class="container">
+            <div class="login_white_wrapper">
+                <div class="login_inner_white_wrapper">
+                    <form class="sw-form" method="POST" action="{{ url_for('users.signup') }}">
+                        {{ form.hidden_tag() }}
+                        <div class="mx-3">
+                            <a href="{{ url_for('main.home') }}">
+                                <h1>Agust</h1>
+                            </a>
+                            <h3 class="f-24 b-3" style="color: #7C7Eb1 !important;letter-spacing: 0.19em;">CRM</h3>
+                            <hr class="sw-hr">
+                            <h5 class="f-22">Sign Up</h5>
+                            <p class="f-14 px-5 mx-2">
+                                One account for everything on Agust including Agust CRM Software.
+                            </p>
+                            <div class="mx-4 my-4">
+                                <div>
+                                    <!-- Alert Messages -->
+                                    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                    </div>
+                                    {% endfor %} {% endif %} {% endwith %}
+                                </div>
+                                <!-- Username -->
+                                <div class="my-3">
+                                    <div class="w-100 text-left">
+                                        <label class="d-inline-block f-12" for="username">Username </label>
+                                    </div>
+                                    {{ f.input(form.username, cssClass="f-14 form-control lowercase") }}
+                                </div>
+
+                                <!-- Email -->
+                                <div class="my-3">
+                                    <div class="w-100 text-left">
+                                        <label class="d-inline-block f-12" for="email">Email </label>
+                                    </div>
+                                    {{ f.input(form.email, cssClass="f-14 form-control lowercase") }}
+                                </div>
+
+                                <!-- Password -->
+                                <div class="my-3">
+                                    <div class="w-100 text-left">
+                                        <label class="d-inline-block f-12" for="password">Password </label>
+                                    </div>
+                                    {{ f.input(form.password, cssClass="f-14 form-control") }}
+                                </div>
+
+                                <!-- Confirm Password -->
+                                <div class="my-3">
+                                    <div class="w-100 text-left">
+                                        <label class="d-inline-block f-12" for="confirm_password">Confirm Password </label>
+                                    </div>
+                                    {{ f.input(form.confirm_password, cssClass="f-14 form-control") }}
+                                </div>
+
+                                <!-- Sign In Btn -->
+                                <button class="mt-4 sw-btn d-inline-block w-100 p-2" type="submit">
+                                    Sign Up
+                                </button>
+
+                                <!-- Statment -->
+                                <p class="f-12 mt-2 px-5">
+                                    By clicking Sign in, you agree to our Terms and have read and acknowledge our IN Privacy Statement.<br> <b>Updated on January 1, 2020</b>
+                                </p>
+
+                                <hr class="sw-hr pb-3">
+
+                                <!-- Sign Up -->
+                                <div>
+                                    <h6 class="pb-2">
+                                        Already have an Account ?
+                                    </h6>
+                                    <a href="{{ url_for('users.login') }}">
+                                        <span class="sw-btn sw-btn-outline d-inline-block w-100">
+                                            Sign In
+                                        </span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='dist/JS/power.js') }}"></script>
+</body>
+
+</html>

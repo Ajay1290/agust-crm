@@ -1,0 +1,28 @@
+{%- macro input(f, cssClass="form-control") -%}
+    {% if f.errors %}
+        {{ f(class="is-invalid "+cssClass, **kwargs) }}
+        <div class="invalid-feedback text-left">
+            {% for error in f.errors %}
+                <span>{{ error }}</span> 
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ f(class=cssClass, **kwargs) }}
+    {% endif %}
+{%- endmacro -%}
+
+{%- macro sw_input(f, placeHolder, cssClass="") -%}
+    <div class="sw-form-input-wrapper">
+        {% if f.errors %}
+            {{ f(class="sw-form-input is-invalid"+cssClass , placeholder=placeHolder, **kwargs) }}
+            <div class="invalid-feedback">
+                {% for error in f.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ f(class="sw-form-input"+cssClass, placeholder=placeHolder, **kwargs) }}
+        {% endif %}
+        <label class="sw-form-input-label">{{placeHolder}}</label>
+    </div>
+{%- endmacro -%}

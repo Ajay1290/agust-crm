@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% block drawer %} {% include 'apps/inventory/transections/components/drawers.html' %} {% endblock drawer %}
+
+{% block navmate %} {% include 'apps/inventory/transections/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+    <div class="container-fluid">
+        
+        <div class="row mt-3">
+            <div class="col-4">
+                <span class="f-12" style="position: absolute;top: -10px;left: 40px;">This Month</span>
+                <div class="row f-12 p-2 ml-2">
+                    <div class="col-6 p-0">
+                        <div class="sw-card p-2">
+                            <h5 class="f-34 text-center mb-0 pb-0">{{ ctx['purchased'] }}</h5>
+                            <div class="f-16 text-center money">Total Purchased </div>
+                        </div>
+                    </div>
+                    <div class="col-6 p-0">
+                        <div class="sw-card p-2">
+                            <h5 class="f-34 text-center mb-0 pb-0">{{ ctx['sold'] }}</h5>
+                            <div class="f-16 text-center money">Total Sold </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="row f-12 p-2 ">
+
+                    <div class="col-6 p-0">
+                        <div class="sw-card p-2">
+                            <h5 class="f-34 text-center mb-0 pb-0">0</h5>
+                            <div class="f-16 text-center money">Total Items</div>
+                        </div>
+                    </div>
+                    <div class="col-6 pl-0">
+                        <div class="sw-card p-2">
+                            <h5 class="f-34 text-center mb-0 pb-0">26-5-20</h5>
+                            <div class="f-16 text-center  money">Last Checked</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="row sharp-txt f-12 bg-light border rounded-pill p-2 py-3 mr-2 ">
+                    <div class="col-6 border-right" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+                        <h5 class="w-100 f-34 text-center mb-0 pb-0 text-info">0</h5>
+                        <h3 class="f-16  money">Low In Stock</h3>
+                    </div>
+                    <div class="col-6 border-left" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+                        <h5 class="w-100 f-34  text-center mb-0 pb-0 text-danger">0</h5>
+                        <h3 class="f-16 money">Out Of Stock</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                {% if transections.__len__() >= 1 %}
+                    <div class="sw-table-area">
+                        <div class="sw-table-features">
+                            <div class="sw-table-filter"></div>
+                            <div class="sw-table-search"></div>
+                            <div class="sw-dropdown f-12">
+                                <div tabindex="23" class="sw-droplabel sw-table-dots"></div>
+                                <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                    <div class="sw-item">Inactive Selected</div>
+                                    <div class="sw-item">Adjust Columns</div>                                    
+                                    <div class="sw-item border-top">Include Inactive</div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="sw-table pager_details sw-table-rower w-100 sw-table-infom">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Product Name</th>
+                                    <th class="text-center">Category</th>
+                                    <th class="text-center">Qty.</th>
+                                    <th class="text-center">Action</th>
+                                    <th class="text-center">Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transection in transections %}
+                                    <tr class="p-0" style="line-height: 1.2em;">
+                                        <td class="text-left">
+                                            {{ transection.name }}
+                                        </td>
+                                        <td class="text-center">{{ transection.category }}</td>
+                                        <td class="text-center">{{ transection.qty }} {{ transection.unit }}</td>
+                                        <td class="text-center">{{ transection.action }}</td>
+                                        <td class="text-center">
+                                            {% if transection.remark %}
+                                                {{ transection.remark }}
+                                            {% else %}
+                                                + Add Remark
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}                                
+                            </tbody>                    
+                        </table>
+                    </div>
+                {% else %}
+                    <div>
+                        <div class="container h-100" style="display: flex;align-items: center;justify-content: center;">
+                            <h2 class="f-34 my-5 text-center money">
+                                Your Transections will automatically listed as you in and out your inventory.
+                            </h2>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock main %}

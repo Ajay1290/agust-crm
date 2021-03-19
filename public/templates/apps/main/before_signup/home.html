@@ -1,0 +1,30 @@
+{% extends "apps/main/before_signup/base.html" %}
+
+{% block main %}
+    <div class="jumbotron jumbotron-fluid bg-white border-bottom shadow-dp-10">
+        <div class="container">
+            <div class="row mt-5 pt-5">
+                <div class="col-5">
+                    <h1 class="display-5">
+                        Scale your business with
+                        help of Agust CRM
+                        Online Software.
+                    </h1>
+                    <span>
+                        <span class="sw-btn sw-btn-text f-14 d-inline-flex px-3" tabindex="1">
+                            Try 7-Day Free Trial
+                        </span>
+                        <a href="{{ url_for('billing.pricing') }}">
+                            <span class="sw-btn f-12 d-inline-block px-3" tabindex="1">
+                                Buy Now
+                            </span>
+                        </a>
+                    </span>
+                </div>
+                <div class="col-7">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

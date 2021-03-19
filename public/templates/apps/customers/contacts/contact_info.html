@@ -1,0 +1,605 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% block drawer %}
+    <div id="editCustomer" class="drawer w-50">
+        <div class="container-fluid px-4 py-3">
+            <h1 class="f-28 money b-3">
+                Edit Customer Info
+                <sapn tabindex="1" class="sw-i-btn f-10" sw-title="Edit customer info by updating form value and * notaion shows neccisity to fill form.">i</sapn>
+            </h1>
+            <form action="{{ url_for('customers.customer_info', customer_id=customer.id) }}" method="POST" class="sw-form f-14">
+                {{ c_form.hidden_tag() }}
+        
+                <div class="row my-3">
+                    <div class="col-5">
+                        
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.first_name.errors %}
+	                            {{ c_form.first_name(class="sw-form-input is-invalid" , placeholder="First Name") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.first_name.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.first_name(class="sw-form-input", placeholder="First Name") }}
+	                        {% endif %}
+                            <lable for="firstName"  class="sw-form-input-label">First Name</lable>
+                        </div>
+        
+                    </div>
+                    <div class="col-5">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.last_name.errors %}
+	                            {{ c_form.last_name(class="sw-form-input is-invalid" , placeholder="Last Name") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.last_name.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.last_name(class="sw-form-input", placeholder="Last Name") }}
+	                        {% endif %}
+                            <lable  class="sw-form-input-label">Last Name</lable>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row f-14 my-3">
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.display_name.errors %}
+	                            {{ c_form.display_name(class="sw-form-input is-invalid" , placeholder="Display Name") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.display_name.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.display_name(class="sw-form-input", placeholder="Display Name") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">Display Name</lable>
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">                            
+                            {% if c_form.company.errors %}
+	                            {{ c_form.company(class="sw-form-input is-invalid" , placeholder="Company Name") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.company.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.company(class="sw-form-input", placeholder="Company Name") }}
+	                        {% endif %}
+                            <lable  class="sw-form-input-label">Legal Company Name</lable>
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.customer_type.errors %}
+	                            {{ c_form.customer_type(class="sw-form-input is-invalid" , placeholder="Customer Type") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.customer_type.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.customer_type(class="sw-form-input", placeholder="Customer Type") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">Customer Type</lable>
+                        </div>
+                    </div>
+                </div>
+        
+                <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                    Contanct Details
+                </h3>
+        
+                <div class="row f-14 my-3">
+                    <div class="col-3 pr-0">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.phone.errors %}
+	                            {{ c_form.phone(class="sw-form-input is-invalid" , placeholder="Phone") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.phone.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.phone(class="sw-form-input", placeholder="Phone") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">Phone</lable>
+                        </div>
+                    </div>
+        
+                    <div class="col-5 pr-0">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.email.errors %}
+	                            {{ c_form.email(class="sw-form-input is-invalid" , placeholder="Email") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.email.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.email(class="sw-form-input", placeholder="Email") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">Email</lable>
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.website.errors %}
+	                            {{ c_form.website(class="sw-form-input is-invalid" , placeholder="Website") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.website.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.website(class="sw-form-input", placeholder="Website") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">Website</lable>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+                <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                    Tax Details
+                </h3>
+        
+                <div class="row f-14 my-3">
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.gst.errors %}
+	                            {{ c_form.gst(class="sw-form-input is-invalid" , placeholder="GST No.") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.gst.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.gst(class="sw-form-input", placeholder="GST No.") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">GST No.</lable>
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="sw-form-input-wrapper">
+                            {% if c_form.pan.errors %}
+	                            {{ c_form.pan(class="sw-form-input is-invalid" , placeholder="PAN No.") }}
+	                            <div class="invalid-feedback">
+	                                {% for error in c_form.pan.errors %}
+	                                    <span>{{ error }}</span>
+	                                {% endfor %}
+	                            </div>
+	                        {% else %}
+	                            {{ c_form.pan(class="sw-form-input", placeholder="PAN No.") }}
+	                        {% endif %}                            
+                            <lable  class="sw-form-input-label">PAN No.</lable>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+                <div class="row f-14 my-3">
+                    <div class="col-6">
+                        <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                            Billing Address
+                        </h3>
+                        <div class="row f-14 my-3">
+                            <div class="col-12 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.address.errors %}
+                                        {{ c_form.address(class="sw-form-input-text is-invalid" , placeholder="Address") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.address.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.address(class="sw-form-input-text", placeholder="Address") }}
+                                    {% endif %}
+                                    <lable  class="sw-form-input-label">Address</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.pincode.errors %}
+                                        {{ c_form.pincode(class="sw-form-input is-invalid" , placeholder="Pincode") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.pincode.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.pincode(class="sw-form-input", placeholder="Pincode") }}
+                                    {% endif %}
+                                    <lable  class="sw-form-input-label">Pincode</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.city.errors %}
+                                        {{ c_form.city(class="sw-form-input is-invalid" , placeholder="City") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.city.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.city(class="sw-form-input", placeholder="City") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">City</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.state.errors %}
+                                        {{ c_form.state(class="sw-form-input is-invalid" , placeholder="State") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.state.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.state(class="sw-form-input", placeholder="State") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">State</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.country.errors %}
+                                        {{ c_form.country(class="sw-form-input is-invalid" , placeholder="Country") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.country.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.country(class="sw-form-input", placeholder="Country") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">Country</lable>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+        
+                    <div class="col-6">
+                        <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                            Shipping Address
+                        </h3>
+                        <div class="row f-14 my-3">
+                            <div class="col-12 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.s_address.errors %}
+                                        {{ c_form.s_address(class="sw-form-input-text is-invalid" , placeholder="Shipping Address") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.s_address.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.s_address(class="sw-form-input-text", placeholder="Shipping Address") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">Address</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.s_pincode.errors %}
+                                        {{ c_form.s_pincode(class="sw-form-input is-invalid" , placeholder="Shipping Pincode") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.s_pincode.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.s_pincode(class="sw-form-input", placeholder="Shipping Pincode") }}
+                                    {% endif %}
+                                    <lable  class="sw-form-input-label">Pincode</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.s_city.errors %}
+                                        {{ c_form.s_city(class="sw-form-input is-invalid" , placeholder="Shipping City") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.s_city.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.s_city(class="sw-form-input", placeholder="Shipping City") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">City</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.s_state.errors %}
+                                        {{ c_form.s_state(class="sw-form-input is-invalid" , placeholder="Shipping State") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.s_state.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.s_state(class="sw-form-input", placeholder="Shipping State") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">State</lable>
+                                </div>
+                            </div>
+        
+                            <div class="col-6 my-2">
+                                <div class="sw-form-input-wrapper">
+                                    {% if c_form.s_country.errors %}
+                                        {{ c_form.s_country(class="sw-form-input is-invalid" , placeholder="Shipping Country") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in c_form.s_country.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ c_form.s_country(class="sw-form-input", placeholder="Shipping Country") }}
+                                    {% endif %}                                    
+                                    <lable  class="sw-form-input-label">Country</lable>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+                <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">Notes</h3>
+        
+                <div class="row f-14 my-3">                    
+                    <div class="col-12 my-2">                        
+                        <div class="sw-form-input-wrapper">                            
+                            <textarea class="sw-form-input-text" placeholder="Take Notes on this Customer" type="text"></textarea>
+                            <lable  class="sw-form-input-label">Take Notes on this Customer</lable>
+                        </div>
+                    </div>
+                </div>
+        
+                <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">Attachments</h3>
+        
+                <div class="row f-14 my-3">
+                    <div class="col-12 my-2">
+                        <div class="border rounded p-4">
+                            Add Attachments To Customer
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-12">
+                        <div class="py-3 d-flex">
+                            <button tabindex="11" type="submit" class="sw-btn d-inline-block px-4 mx-1">
+                                
+                                Save
+                            </button>
+                            <span tabindex="10" class="sw-btn sw-btn-outline drawer-cancle-button d-inline-block px-3 mx-2">
+                                
+                                Cancle
+                            </span>
+                        </div>                        
+                    </div>
+                </div>
+        
+            </form>
+        </div>        
+    </div>
+{% endblock drawer %}
+
+{% block navmate %} {% include 'apps/customers/customers/components/navmate.html' %} {% endblock navmate %}
+
+
+{% block main %}
+<div class="p-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mt-1 f-22 b-3  sharp-txt" style="line-height: 0.51em;">
+                        {{ customer.display_name }}
+                        <a class="mx-1" href="mailto:{{ customer.email }}" >
+                            &#x1F4E9;
+                            <!-- <img style="height: 18px; width: 18px;" src="{{ url_for('static', filename='src/SVG/mail.svg') }}" /> -->
+                        </a>                        
+                        <span class="f-10 m-0 p-0" style="font-family: sans-serif;">(since {{ customer.created_on.strftime("%B of %Y") }})</span>
+                        <br class="m-0  p-0">
+                        {% if customer.company %}<span class="f-12 pr-1 b-2">{{ customer.company }}</span>{% endif %} 
+                    </h1>                    
+                    <div class="f-14" style="line-height: 1.42em;">                        
+                        <span>{% if customer.address %}{{ customer.address }},<br>{% endif %}
+                            {% if customer.city %}{{ customer.city }},{% endif %}
+                            {% if customer.state %}{{ customer.state }},{% endif %}
+                            {% if customer.country %}{{ customer.country }},<br>{% endif %}
+                            {% if customer.pincode %}{{ customer.pincode }}{% endif %}</span>
+                    </div>                    
+                </div>                
+                
+                <div style="position: absolute;right: 15px; float: right;">
+                    <span tabindex="12" id="edit_customer_btn" drawer-target="editCustomer" class="sw-btn drawer-button f-12 px-3">
+                        Edit
+                    </span>
+                    <div class="d-inline-block position-relative">
+                        <div class="sw-dropdown f-14">
+                            <span tabindex="12" class="sw-btn f-12 px-3 sw-droplabel">
+                                Actions
+                            </span>
+                            <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                {% if not customer.is_active %}
+                                    <a tabindex="2" class="sw-item nav-link" href="{{ url_for('customers.customer_active', customer_id=customer.id) }}" >
+                                        Make Active
+                                    </a>
+                                {% else %}
+                                    <a class="sw-item nav-link" href="{{ url_for('customers.customer_inactive', customer_id=customer.id) }}" >
+                                        Make Inactive
+                                    </a>
+                                {% endif %}                                
+                                <a class="sw-item nav-link" href="#" >
+                                    Make Invoice
+                                </a>
+                                <a class="sw-item nav-link" href="#" >
+                                    Print Transections
+                                </a>
+                                <a class="sw-item nav-link border-top" href="{{ url_for('customers.customer_delete', customer_id=customer.id) }}" >
+                                    Delete Permentaley
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="row f-14">
+
+        <div class="col-12">
+            <div class="sw-tabs-area mt-5 w-100">
+            
+                <div class="sw-tabs w-75 mb-3">
+                    <a class="sw-tab active" tab-target="#info" >Customer Info</a>
+                    <a class="sw-tab" tab-target="#machines" >Machines</a>
+                    <a class="sw-tab" tab-target="#complaints" >Complaints</a>
+                    <a class="sw-tab" tab-target="#analysis" >Analysis</a>
+                </div>
+
+                <div id="complaints" class="sw-tab-content w-100"></div>
+                <div id="machines" class="sw-tab-content w-100">
+                    <div class="row f-14">
+                        {% for machine in  customer.machines %}
+                        <div class="col-12 py-2 px-5 ">
+                            <div class="sw-card">
+                                <div class="sw-card-heading">
+                                    <h1 class="m-0 f-20">
+                                        {{ machine.id }}. 
+                                        {{ machine.name }}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="analysis" class="sw-tab-content w-100"></div>
+
+                <div id="info" class="sw-tab-content w-100">
+                    <div class="row f-14">
+                        <div class="col-5 mx-4">
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Customer</div>
+                                <div class="col-9">{{ customer.first_name }} {{ customer.last_name }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Display as</div>
+                                <div class="col-9">{{ customer.display_name }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Email</div>
+                                <div class="col-9">{{ customer.email }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Phone</div>
+                                <div class="col-9">{{ customer.phone }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Website</div>
+                                <div class="col-9"><a href="{{ customer.website }}" target="_blank">{{ customer.website }}</a></div>
+                            </div>  
+                            
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">GST No.</div>
+                                <div class="col-9">{{ customer.gst }}</div>
+                            </div>
+
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">PAN No.</div>
+                                <div class="col-9">{{ customer.pan }}</div>
+                            </div>
+
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Status</div>
+                                <div class="col-9">{{ customer.is_active }}</div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Company</div>
+                                <div class="col-9">{{ customer.company }}</div>
+                            </div>
+                            
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Customer Type</div>
+                                <div class="col-9">{{ customer.customer_type }}</div>
+                            </div>            
+
+                            <div class="row border-bottom py-2">                
+                                <div class="col-3 b-3">Billing Address</div>
+                                <div class="col-9">
+                                    {% if customer.address %}{{ customer.address }},<br>{% endif %}
+                                    {% if customer.city %}{{ customer.city }},{% endif %}
+                                    {% if customer.state %}{{ customer.state }},{% endif %}
+                                    {% if customer.country %}{{ customer.country }},<br>{% endif %}
+                                    {% if customer.pincode %}{{ customer.pincode }}{% endif %}                    
+                                </div>
+                            </div>
+
+                            <div class="row border-bottom py-2">
+                                <div class="col-3 b-3">Shipping Address</div>
+                                <div class="col-9">
+                                    {% if customer.s_address %}{{ customer.s_address }},<br>{% endif %}
+                                    {% if customer.s_city %}{{ customer.s_city }},{% endif %}
+                                    {% if customer.s_state %}{{ customer.s_state }},{% endif %}
+                                    {% if customer.s_country %}{{ customer.s_country }},<br>{% endif %}
+                                    {% if customer.s_pincode %}{{ customer.s_pincode }}{% endif %}    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+    </div>
+
+
+
+</div>
+{% endblock main %}
+
+{% block JS %}
+<script>
+    var g = '{{ c_form.errors }}'	
+	if (g != '{}' ){
+		var f = document.getElementById('edit_customer_btn');
+		f.click()
+	}
+    
+</script>
+{% endblock JS %}

@@ -1,0 +1,13 @@
+<div class="sw-tabs" style="width: 380px;">
+    <a  href="{{ url_for('customers.all_customers') }}" 
+        class="sw-tab {% if 'customers' in request.path %} active {% endif %}"
+        tab-target="#d" style="padding: 0.8em;">
+            Customers
+    </a>
+    <a  href="{{ url_for('customers.all_contacts') }}" 
+        class="sw-tab {% if 'contacts' in request.path %} active {% endif %}" 
+        tab-target="#d" style="padding: 0.8em;">
+            Contacts
+    </a>
+    <div id="d" class="sw-tab-content"></div>
+</div>

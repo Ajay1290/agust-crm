@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% block drawer %} {% include 'apps/inventory/machines/components/drawers.html' %} {% endblock drawer %}
+
+{% block navmate %} {% include 'apps/inventory/machines/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+    {% if machines.__len__() >0 %}
+        <div class="m-2">
+            <div class="row">
+                <div class="col-12">
+                    <span drawer-target="newInventory" id="create_inv_btn" tabindex="102" class="sw-btn drawer-button f-12 float-right sharp-txt">
+                        + Add Product
+                    </span>
+                </div>
+            </div>
+
+            
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="sw-table-area">
+                        <div class="sw-table-features">
+                            <div class="sw-table-filter"></div>
+                            <div class="sw-table-search"></div>
+                            <div class="sw-dropdown f-12">
+                                <div tabindex="23" class="sw-droplabel sw-table-dots"></div>
+                                <div class="sw-dropmenu" style="right: 0;left: auto;">
+                                    <div class="sw-item">Inactive Selected</div>
+                                    <div class="sw-item">Adjust Columns</div>                                    
+                                    <div class="sw-item border-top">Include Inactive</div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="sw-table pager_details sw-table-rower w-100 sw-table-infom">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Product Name</th>
+                                    <th class="text-left">Model</th>
+                                    <th class="text-left">Serial</th>
+                                    <th class="text-left">Product Code</th>
+                                    <th class="text-left">Category</th>
+                                    <th class="text-center">Owned By</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for machine in machines %}
+                                    <tr class="p-0" style="line-height: 1.2em;">
+                                        <td class="text-left">
+                                            <a href="{{ url_for('inventory.machine_info', m_id=machine.id) }}">
+                                                {{ machine.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ machine.model }}</td>
+                                        <td>{{ machine.serial }}</td>
+                                        <td>{{ machine.product_code }}</td>
+                                        <td>{{ machine.category }}</td>
+                                        <td class="text-center">
+                                            {% if machine.Customer_id %}
+                                                {{ machine.owner.display_name }}
+                                            {% else %}
+                                                <a href="{{ url_for('inventory.machines', assign=machine.id) }}" class="f-24" title="Assign Customer to Machine" style="cursor: pointer;">+</a>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-right">---</td>
+                                    </tr>
+                                {% endfor %}                                
+                            </tbody>                    
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <div class="container h-100" style="display: flex;align-items: center;justify-content: center;">        
+        <h2 class="f-34 text-center money w-75">
+            Manage Your Machines Track Dues, Complaints etc.<br>
+            <span drawer-target="newInventory" id="create_inv_btn" tabindex="102" class="sw-btn drawer-button d-inline-block f-16 mt-2 px-3 sharp-txt">
+                <span class="sw-btn-ripple"></span>
+                Get Started
+            </span>
+        </h2>      
+    </div>
+    {% endif %}
+{% endblock main %}
+
+{% block JS %}
+<script>
+    let assign_id = '{{ request.args.get("assign") }}';
+    if (assign_id != 'None'){
+        document.getElementById('assignCustomerBtn').click();
+    }
+</script>
+{% endblock JS %}

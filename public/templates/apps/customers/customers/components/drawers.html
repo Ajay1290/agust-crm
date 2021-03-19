@@ -1,0 +1,165 @@
+{% import 'macros/form.html' as _form %}
+
+<div id="newCustomer" class="drawer w-50">
+    <div class="container-fluid px-4 py-3">
+        <h1 class="f-28 money b-3">
+            Create New Customer
+            <sapn  tabindex="1" class="sw-i-btn f-10" 
+                sw-title="Create a new customer by filling form and * notaion shows neccisity to fill form.">
+                i
+            </sapn>
+        </h1>
+        <form action="{{ url_for('customers.all_customers') }}" method="POST" class="sw-form f-14">
+            {{ c_form.hidden_tag() }}
+    
+            <div class="row my-3">
+                <div class="col-5">
+                    {{ _form.sw_input(c_form.first_name, "First Name") }}
+                </div>
+                <div class="col-5">
+                    {{ _form.sw_input(c_form.last_name, "Last Name") }}
+                </div>
+            </div>
+    
+            <div class="row f-14 my-3">
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.display_name, "Display Name") }}
+                </div>
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.company, "Company Name") }}
+                </div>
+    
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.customer_type, "Customer Type") }}
+                </div>
+            </div>
+    
+            <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                Contanct Details
+            </h3>
+    
+            <div class="row f-14 my-3">
+                <div class="col-3 pr-0">
+                    {{ _form.sw_input(c_form.phone, "Phone") }}
+                </div>
+    
+                <div class="col-5 pr-0">
+                    {{ _form.sw_input(c_form.email, "Email") }}
+                </div>
+    
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.website, "Website") }}
+                </div>
+                
+            </div>
+    
+            <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                Tax Details
+            </h3>
+    
+            <div class="row f-14 my-3">
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.gst, "GST No.") }}
+                </div>
+    
+                <div class="col-4">
+                    {{ _form.sw_input(c_form.pan, "PAN No.") }}
+                </div>
+                
+            </div>
+    
+            <div class="row f-14 my-3">
+                <div class="col-6">
+                    <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                        Billing Address
+                    </h3>
+                    <div class="row f-14 my-3">
+                        <div class="col-12 my-2">
+                            {{ _form.sw_input(c_form.address, "Address") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.pincode, "Pincode") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.city, "City") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.state, "State") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.country, "Country") }}
+                        </div>
+                        
+                    </div>
+                </div>
+    
+                <div class="col-6">
+                    <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">
+                        Shipping Address
+                    </h3>
+                    <div class="row f-14 my-3">
+                        <div class="col-12 my-2">
+                            {{ _form.sw_input(c_form.s_address, "Shipping Address") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.s_pincode, "Shipping Pincode") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.s_city, "Shipping City") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.s_state, "Shipping State") }}
+                        </div>
+    
+                        <div class="col-6 my-2">
+                            {{ _form.sw_input(c_form.s_country, "Shipping Country") }}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">Notes</h3>
+    
+            <div class="row f-14 my-3">                    
+                <div class="col-12 my-2">                        
+                    <div class="sw-form-input-wrapper">                            
+                        <textarea class="sw-form-input-text" placeholder="Take Notes on this Customer" type="text"></textarea>
+                        <label  class="sw-form-input-label">Take Notes on this Customer</label>
+                    </div>
+                </div>
+            </div>
+    
+            <h3 class="f-18 mb-0 mt-1 border-bottom pb-1">Attachments</h3>
+    
+            <div class="row f-14 my-3">
+                <div class="col-12 my-2">
+                    <div class="border rounded p-4">
+                        Add Attachments To Customer
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-12">
+                    <div class="py-3 d-flex">
+                        <button tabindex="11" type="submit" class="sw-btn d-inline-block px-4 mx-1">
+                            Save
+                        </button>
+                        <button type="button" tabindex="10" class="sw-btn sw-btn-outline drawer-cancle-button d-inline-block px-3 mx-2">
+                            Cancle
+                        </button >
+                    </div>                        
+                </div>
+            </div>
+    
+        </form>
+    </div>        
+</div>

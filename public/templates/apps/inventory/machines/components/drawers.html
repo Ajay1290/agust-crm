@@ -1,0 +1,109 @@
+{% import 'macros/form.html' as _form %}
+
+<div id="newInventory" class="drawer w-50">
+    <div class="container-fluid px-4 py-3">
+        <!-- Create Product -->
+        <div id="createProduct" class="row text-center px-3" style="position: relative;">
+            <h1 class="f-28 money b-3">
+                Create New Machine
+                <sapn tabindex="1" class="sw-i-btn f-10" sw-title="Create a new product which you want sell or manage stock of it.">i</sapn>
+            </h1>
+
+            <form action="{{ url_for('inventory.machine_create') }}" method="POST" class="sw-form f-14 px-2">
+                {{ form.hidden_tag() }}
+                <!-- Product Name -->
+                <div class="row my-3">
+                    <div class="col-6">
+                        {{ _form.sw_input(form.name, "Product Name") }}
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="row my-3">
+                    <div class="col-8">
+                        {{ _form.sw_input(form.description, "Description") }}
+                    </div>
+                </div>
+                <!-- Model, Serial -->
+                <div class="row my-3">
+                    <!-- Model -->
+                    <div class="col-5">
+                        {{ _form.sw_input(form.model, "Model") }}
+                    </div>
+                    <!-- Serial -->
+                    <div class="col-5">
+                        {{ _form.sw_input(form.serial, "Serial No.") }}
+                    </div>
+                </div>
+                <!-- Product Code, Category -->
+                <div class="row my-3">
+                    <!-- Product Code -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.product_code, "Product Code") }}
+                    </div>
+                    <!-- Category -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.category, "Category") }}
+                    </div>
+                    <!-- Inst Date -->
+                    <div class="col-4">
+                        {{ _form.sw_input(form.instdate, "Inst. Date", type='date') }}
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-12">
+                        <div class="py-3 d-flex">
+                            <button tabindex="11" type="submit" class="sw-btn d-inline-block px-4 mx-1">
+                                Save
+                            </button>
+                            <span tabindex="10" class="sw-btn sw-btn-outline drawer-cancle-button d-inline-block px-3 mx-2">
+                                Cancle
+                            </span>
+                        </div>                        
+                    </div>
+                </div>
+
+            </form>                
+        </div>
+    </div>        
+</div>
+
+<button id="assignCustomerBtn" hidden class="drawer-button" drawer-target="assignCustomer">_</button>
+<div id="assignCustomer" class="drawer drawer-bottom w-50" style="width: 80%!important;left: 10%;height: 60%;border-radius: 10px 10px 0 0;">
+    <div class="container-fluid px-4 py-3">
+        <div class="row text-center px-3" style="position: relative;">
+            <h1 class="f-28 money b-3">
+                Assign Customer to Machine
+                <sapn tabindex="1" class="sw-i-btn f-10" sw-title="Create a new product which you want sell or manage stock of it.">i</sapn>
+            </h1>
+
+            <form id="assignCustomerForm" action="{% if request.args.get('assign') %}
+                {{ url_for('inventory.assign_machine', m_id=request.args.get('assign')) }}{% endif %}" method="POST" class="sw-form f-14 px-2">
+                {{ a_form.hidden_tag() }}
+
+                <div class="sw-form-input-wrapper">
+                    <select class="sw-form-input" name="customer_id">
+                        <option value="-1">Select a Customer</option>
+                        {% for customer in customers %}
+                            <option value="{{ customer.id }}">{{ customer.display_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-12">
+                        <div class="py-3 d-flex">
+                            <button type="submit" class="sw-btn px-4 mx-1">
+                                Save
+                            </button>
+                            <button type="button" class="sw-btn sw-btn-outline drawer-cancle-button px-3 mx-2">
+                                Cancle
+                            </button>
+                        </div>                        
+                    </div>
+                </div>
+
+            </form>                
+        </div>
+    </div>        
+</div>

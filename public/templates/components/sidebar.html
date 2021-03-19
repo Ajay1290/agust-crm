@@ -1,0 +1,43 @@
+<!-- Sidebar -->
+<aside class="sidebar-wrapper" style="z-index: 2;">
+    <div class="row">
+        <div class="col-12">
+    
+            <div style="padding:8px 2px 4px 10px;">
+                <a class="brand-link">
+                    <h1 class="h5 brand-logo">Agust CRM</h1>
+                </a>
+            </div>
+            <div class="py-2">
+                <div class="sw-tabs-vertical">
+                    <a href="{{ url_for('main.home') }}" class="sw-tab sw-tab-bordered-s text-left py-2 pl-3 ">
+                        Dashboard
+                    </a>
+                    <a href="{{ url_for('customers.all_customers') }}" class="sw-tab text-left py-2 pl-3" >
+                        Customers
+                    </a>
+                    <a href="{{ url_for('inventory.transections') }}" class="sw-tab text-left py-2 pl-3">
+                        Inventory
+                    </a>
+                    <a href="{{ url_for('calls.complaints') }}" class="sw-tab text-left py-2 pl-3">
+                        Complaints
+                    </a>
+                    <a href="{{ url_for('calls.complaints') }}" class="sw-tab text-left py-2 pl-3">
+                        Invoices
+                    </a>
+                    <a href="{{ url_for('calls.complaints') }}" class="sw-tab text-left py-2 pl-3">
+                        Reports
+                    </a>
+                    <a href="{{ url_for('calls.complaints') }}" class="sw-tab text-left py-2 pl-3">
+                        Analytics
+                    </a>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <div style="position: absolute;bottom: 0;text-align: right;padding: 5px 15px;width: 100%;">
+        <img src="{{ url_for('static', filename='src/SVG/back.svg') }}" alt="Profile Icon" 
+                style="height: 18px; width: 18px;">
+    </div>
+</aside>

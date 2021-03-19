@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agust CRM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/CSS/power.min.css') }}">
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+    {% block nav %}
+    <header class="sw-navbar py-2  shadow-dp-10-i">
+        <nav class="container">
+            <a href="{{ url_for('main.home') }}" class="sw-navbar-logo mr-4 f-18 b-3">
+                Agust CRM
+            </a>
+            <span class="sw-navbar-list mb-0">
+                <span class="sw-navbar-item">
+                    <a class="sw-btn d-inline-flex sw-btn-text f-14">Features</a>
+                </span>
+
+                <span class="sw-navbar-item">
+                    <a href="{{ url_for('billing.pricing') }}" class="sw-btn d-inline-flex sw-btn-text f-14">Pricing</a>
+                </span>
+
+                <span class="sw-navbar-item">
+                    <a class="sw-btn d-inline-flex sw-btn-text f-14">Learn More</a>
+                </span>
+
+            </span>
+            <span class=" float-right mt-1">
+                {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('users.login') }}" class="sw-btn d-inline-flex sw-btn-text f-14" tabindex="1">
+                        Login
+                    </a>
+                    <a href="{{ url_for('users.signup') }}" class="sw-btn d-inline-flex sw-btn-text f-14" tabindex="1">
+                        Register
+                    </a>
+                {% endif %}
+            </span>
+        </nav>
+    </header>
+    {% endblock nav %}
+    
+    {% block main %}
+        {% include 'components/notification.html' %}
+    {% endblock main %}
+
+    <script src="{{ url_for('static', filename='src/JS/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/JS/power.js') }}"></script>
+    {% block JS %}
+    {% endblock JS %}
+</body>
+
+</html>

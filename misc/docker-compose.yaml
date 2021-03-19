@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    web:
+        restart: always
+        build: .
+        command: >
+            gunicorn -c "python:config.gunicorn" --reload "manager:create_app()"
+        env_file:
+            - 'config/.env'
+        volumes:
+            - .:/website
+            - static_volume:/website/manager/public/static
+volumes:
+    static_volume:

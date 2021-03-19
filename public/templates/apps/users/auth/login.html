@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agust Accounting Login - Sign in to Agust Accounting Software</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/CSS/main_pg.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/CSS/power.min.css') }}">
+    <style>
+        * {
+            user-select: none;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            /* background-color: whitesmoke !important; */
+            background-color: #ECEEF1 !important;
+        }
+        
+        h1 {
+            font-family: Roboto, Helvetica, Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: rgba(18, 13, 47, 1) !important;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(18, 13, 47, 0.25) !important;
+        }
+        
+        .login_wrapper {
+            /* background-color: var(--mdc-theme-primary); */
+            /* opacity: 0.925; */
+            min-height: 100vh;
+        }
+        
+        .login_white_wrapper {
+            margin: 35px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login_inner_white_wrapper {
+            background-color: #fff;
+            width: 500px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 25px 15px;
+            text-align: center;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 3px #dadce0;
+        }
+        .lowercase{ text-transform: lowercase; }
+        .capitalize{ text-transform: capitalize; }
+        .uppercase{ text-transform: uppercase; }
+        .sw-hr {
+            padding: 0 25px;
+            border-top: 1px solid #e2e1e1;
+        }
+    </style>
+</head>
+
+<body>
+    {% import 'macros/form.html' as f %}
+    <div class="login_wrapper">
+        <div class="container">
+            <div class="login_white_wrapper">
+                <form class="login_inner_white_wrapper" method="POST" autocomplete="off" action="{{ url_for('users.login') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="mx-3">
+                        <h1>Agust</h1>
+                        <h3 class="f-24 b-3" style="color: #7C7Eb1 !important;letter-spacing: 0.19em;">
+                            CRM
+                        </h3>
+                        <hr class="sw-hr">
+                        <h5 class="f-22">Sign in</h5>
+                        <p class="f-14 px-5 mx-2">
+                            One account for everything on Agust including Agust CRM Online Software.
+                        </p>
+                        <div class="mx-4 my-4">
+                            <div>
+                                <!-- Alert Messages -->
+                                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                            </button>
+                                </div>
+                                {% endfor %} {% endif %} {% endwith %}
+                            </div>
+                            <div class="my-3">
+                                <label class="w-100 text-left f-12" for="username">Username or Email</label>
+                                {{ f.input(form.identity, "f-14 form-control lowercase") }}
+                            </div>
+                            <div class="my-3">
+                                <div class="w-100 text-left">
+                                    <label class="d-inline-block f-12" for="password">Password </label>
+                                    <a href="#" class="float-right d-inline-block f-12 mt-1">
+                                        Forgot Password ?
+                                    </a>
+                                </div>
+                                {{ f.input(form.password, "f-14 form-control") }}
+                            </div>
+                            <div class="my-3 text-left w-100">
+                                {% if form.remember.errors %} {{ form.remember(class="f-18 d-inline is-invalid") }}
+                                <div class="invalid-feedback text-left">
+                                    {% for error in form.remember.errors %}
+                                    <span>{{ error }}</span> {% endfor %}
+                                </div>
+                                {% else %} {{ form.remember(class="f-18 d-inline") }} {% endif %}
+                                <label class="text-left f-14   d-inline-block" for="remember" style="letter-spacing: 0.3px;margin: 0 2px;">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <button class="mt-4 sw-btn d-inline-block w-100 p-2">
+                                Sign In
+                            </button>
+                            <p class="f-12 mt-2 px-5">
+                                By clicking Sign in, you agree to our Terms and have read and acknowledge our IN Privacy Statement.<br> <b>Updated on January 1, 2020</b>
+                            </p>
+                            <hr class="sw-hr pb-3">
+                            <h6 class="pb-2">
+                                New to Agust CRM?
+                            </h6>
+                            <a href="{{ url_for('users.signup') }}">
+                                <span class="sw-btn sw-btn-outline d-inline-block w-100">
+                                    Sign Up
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='dist/JS/power.js') }}"></script>
+</body>
+
+</html>

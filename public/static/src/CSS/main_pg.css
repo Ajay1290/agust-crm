@@ -1,0 +1,30 @@
+/* :root{
+    --theme-primary: #343a40 !important;
+    --theme-secondary: #ECEC1D !important;
+    --theme-surface: #FEFFEF !important;
+} */
+
+:root{
+    --theme-primary: #003152;
+    --theme-secondary: #fff;
+}
+*:focus{
+    outline: 0 !important;
+}
+
+body{
+    font-size: 1em;
+    min-height: 100vh;
+    background-color: var(--theme-secondary) !important;
+}
+
+a{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+

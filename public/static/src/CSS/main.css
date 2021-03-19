@@ -1,0 +1,153 @@
+@import './fonts/Monsterrat.css';
+@import './fonts/Rajdhani.css';
+@import './fonts/Roboto.css';
+
+/* :root {
+    --theme-primary: #343a40 !important;
+    --theme-secondary: #FFF !important;
+    --theme-surface: #ECEEF1 !important;
+} */
+
+:root{
+    --theme-primary: #003152;
+    --theme-secondary: #fff;
+}
+
+
+*:focus {
+    outline: 0 !important;
+}
+
+body {
+    font-size: 1em;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--theme-surface) !important;
+    font-family: Roboto, sans-serif;
+}
+.sidebar-wrapper{
+    min-height: 100vh;
+    background-color: var(--theme-primary);
+    color: #fff;
+    z-index: 10000;
+    width: 200px;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    left: 0;
+}
+.navbar {
+    padding: 0px 1em !important;
+    background-color: #fff !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    font-size: 13px;
+}
+
+.navbar-nav li.nav-item {
+    margin: 0px 5px;
+}
+
+a.nav-link {
+    cursor: pointer;
+}
+
+.navbar-nav li.nav-item a.nav-link svg {
+    height: 18px;
+    width: 18px;
+    margin: 0;
+}
+
+.sidebar_wrapper {
+    position: fixed !important;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+.sidebar-row {
+    background-color: #120d2f;
+    margin-right: 0px !important;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.sidebar {
+    position: relative;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 0px !important;
+}
+
+.side-nav-list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.side-nav-item .col-3 svg {
+    height: 23px;
+    width: 23px;
+}
+
+.side-nav-item .col-3 {
+    padding: 0px 8px;
+}
+
+.side-nav-item {
+    margin: 0 !important;
+    padding: 8px 8px 8px 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.side-nav-item .col-9 {
+    padding-left: 5px;
+}
+
+.brand-logo {
+    padding: 4px 8px 5px 2px;
+    border-bottom: 1px solid #fff;
+    margin: 0 5px 0 0px;
+}
+
+.main_wrapper {
+    margin-top: 60px;
+    min-height: 100vh;
+}
+
+.footer_wrapper {
+    position: sticky;
+    top: 20px;
+    padding: 5px 10px;
+    background-color: #fff;
+}
+
+.side-nav-link {
+    display: inline-flex;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+}
+
+.sw-check:checked~.sw-tab-label {
+    border: none !important;
+}
+
+.money{
+    font-family: 'Rajdhani', Roboto, sans-serif;
+}
+
+.sharp-txt{
+    font-family: 'Monsterrat', Roboto, sans-serif;
+}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+{% endblock head %}
+
+{% block navmate %} {% include 'apps/inventory/machines/components/navmate.html' %} {% endblock navmate %}
+
+{% block main %}
+<div class="sw-container">
+    <div class="row">
+        <div class="col-10 border-right">
+            <div class="sw-tabs-area w-100">
+                <!-- Info Tab -->
+                <div class="sw-tab-content w-75 active" id="info">
+                    <h1 class="f-36 mx-5px mb-4">Info</h1>
+                    <div class="row mx-5px sw-content-section">
+                        <div class="col-12">
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Name</div>
+                                <div class="col-6">{{ machine.name }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Model</div>
+                                <div class="col-6">{{ machine.model }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Serial</div>
+                                <div class="col-6">{{ machine.serial }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Product Code</div>
+                                <div class="col-6">{{ machine.product_code }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Category</div>
+                                <div class="col-6">{{ machine.category }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Inst. date</div>
+                                <div class="col-6">{{ machine.instdate }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Description</div>
+                                <div class="col-6">{{ machine.description }}</div>
+                            </div>
+                            <div class="row my-3 border-bottom">
+                                <div class="col-6">Customer id</div>
+                                <div class="col-6">{{ machine.Customer_id }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complaints Tab -->
+                <div class="sw-tab-content" id="complaints">
+                    <h1>Complaints</h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ut numquam debitis magni aliquid, ad voluptates animi provident laborum in ratione cumque alias vero veritatis consectetur dignissimos tempora asperiores ea.
+                </div>
+
+                <!-- Consumables Tab -->
+                <div class="sw-tab-content" id="consumables">
+                    <h1>Consumables</h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ut numquam debitis magni aliquid, ad voluptates animi provident laborum in ratione cumque alias vero veritatis consectetur dignissimos tempora asperiores ea.
+                </div>
+
+                <!-- Analysis Tab -->
+                <div class="sw-tab-content" id="analysis">
+                    <h1>Analysis</h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ut numquam debitis magni aliquid, ad voluptates animi provident laborum in ratione cumque alias vero veritatis consectetur dignissimos tempora asperiores ea.
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="sw-tabs-vertical">
+                <a href="#" tab-target='#info' class="sw-tab text-left active">Info</a>
+                <a href="#" tab-target='#complaints' class="sw-tab text-left">Complaints</a>
+                <a href="#" tab-target='#consumables' class="sw-tab text-left">Consumables</a>
+                <a href="#" tab-target='#analysis' class="sw-tab text-left">Analysis</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
